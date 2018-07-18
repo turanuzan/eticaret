@@ -24,23 +24,24 @@
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>np
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <img src="http://lorempixel.com/640/400/food/1" alt="...">
+                            {{--http://lorempixel.com/640/400/food/1--}}
+                            <img src="http://placekitten.com/640/400?image=1" alt="...">
                             <div class="carousel-caption">
                                 Slide 1
                             </div>
                         </div>
                         <div class="item">
-                            <img src="http://lorempixel.com/640/400/food/2" alt="...">
+                            <img src="http://placekitten.com/640/400?image=2" alt="...">
                             <div class="carousel-caption">
                                 Slide 2
                             </div>
                         </div>
                         <div class="item">
-                            <img src="http://lorempixel.com/640/400/food/3" alt="...">
+                            <img src="http://placekitten.com/640/400?image=3" alt="...">
                             <div class="carousel-caption">
                                 Slide 3
                             </div>
@@ -61,7 +62,7 @@
                     <div class="panel-heading">Günün Fırsatı</div>
                     <div class="panel-body">
                         <a href="#">
-                            <img src="http://lorempixel.com/400/485/food/1" class="img-responsive">
+                            <img src="http://placekitten.com/400/485?image=1" class="img-responsive">
                         </a>
                     </div>
                 </div>
@@ -75,22 +76,22 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/1"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=1"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                         </div>
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/2"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=2"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                         </div>
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/3"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=3"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                         </div>
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/4"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=4"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                         </div>
@@ -105,22 +106,22 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/1"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=5"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                         </div>
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/2"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=6"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                         </div>
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/3"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=7"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                         </div>
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/4"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=8"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                         </div>
@@ -134,22 +135,22 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/1"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=9"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                         </div>
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/2"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=10"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                         </div>
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/3"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=11"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                         </div>
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/4"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=12"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                         </div>
