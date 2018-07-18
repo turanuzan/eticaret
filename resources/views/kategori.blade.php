@@ -47,25 +47,25 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/1"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=1"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                             <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
                         </div>
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/2"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=2"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                             <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
                         </div>
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/3"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=3"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                             <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
                         </div>
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/4"></a>
+                            <a href="#"><img src="http://placekitten.com/400/400?image=4"></a>
                             <p><a href="#">Ürün adı</a></p>
                             <p class="price">129 ₺</p>
                             <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
