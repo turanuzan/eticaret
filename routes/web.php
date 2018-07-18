@@ -1,18 +1,10 @@
 <?php
 
+// ornekler
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('anasayfa');
 });
 
 Route::get('/merhaba', function (){
@@ -26,3 +18,6 @@ Route::get('/urun/{urun_adi}/{id?}',function ($urun_adi,$id = 0){
 Route::get('/kampanya',function (){
     return redirect()->route('urun_detay',['urun_adi' => 'elma','id' => 5]);
 });
+*/
+
+Route::get('/','AnasayfaController@index')->name('anasayfa');
