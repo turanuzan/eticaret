@@ -18,10 +18,14 @@ Route::get('/urun/{urun_adi}/{id?}',function ($urun_adi,$id = 0){
 Route::get('/kampanya',function (){
     return redirect()->route('urun_detay',['urun_adi' => 'elma','id' => 5]);
 });
+
+// dogrudan view sayfasina gidilebilir.
+Route::view('/kategori','kategori');
+Route::view('/urun','urun');
+Route::view('/sepet','sepet');
+
 */
 
 Route::get('/','AnasayfaController@index')->name('anasayfa');
 
-Route::view('/kategori','kategori');
-Route::view('/urun','urun');
-Route::view('/sepet','sepet');
+Route::get('/kategori/{slug_kategoriadi}','KategoriController@index')->name('kategori');

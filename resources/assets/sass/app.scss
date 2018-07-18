@@ -1,17 +1,29 @@
 
+// npm versionu 5.1 olarak yuklendi ve asagidaki komutlar kullanildi
+
+// 5.1.0 surumunu kurmak icin => sudo npm install -g npm@5.1.0
+
+/*
+// eski node_modules eklentilerini silmek ve yeni versiyona gore tekrar kurmak icin
+
+--> npm -v
+--> rm -rf node_modules
+--> npm cache clear --force
+--> rm -rf package-lock.json
+--> npm install
+
+*/
+
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 // Variables
 @import "variables";
+// sıkıntı olursa asagidaki yol verilebilir..
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss";
 
+// bootstrap-sass kurulu gelmedi ayri olarak npm install bootstrap-sass --save-dev komutu ile ayrica kuruldu.
 // Bootstrap
-//@import '~bootstrap/scss/bootstrap';
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 @import "commerce";
-
-/*.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}*/
