@@ -20,6 +20,13 @@ class CreateKategoriTable extends Migration
             //$table->timestamps(); // created_at ve updated_at olarak kendi iki tane kolon acar.
             $table->timestamp('olusturma_tarihi')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('guncelleme_tarihi')->default(DB::raw('CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP'));
+
+            // bu özellik tabloda otomatik olarak deleted_at kolonunu olusturur.
+            //$table->softDeletes();
+
+            //$table->softDeletes() özelliğini türkçe olarak kullanmak istiyorsak timestamp ozelliginde yararlanırız.
+            $table->timestamp('silinme_tarihi')->nullable();
+
         });
     }
 
