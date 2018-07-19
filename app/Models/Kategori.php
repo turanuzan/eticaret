@@ -30,4 +30,10 @@ class Kategori extends Model
     const UPDATED_AT = 'guncelleme_tarihi';
     // softDeletes() özelliğinin vermiş olduğu deleted_at kolonu yerine kullanilan türkçe kolonun ismini tanımlıyoruz.
     const DELETED_AT = 'silinme_tarihi';
+
+    public function urunler()
+    {
+        return $this->belongsToMany('App\Models\Urun','kategori_urun');
+    }
+
 }
