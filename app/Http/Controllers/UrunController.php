@@ -18,4 +18,14 @@ class UrunController extends Controller
 
         return view('urun',compact('urun','kategoriler'));
     }
+
+    public function ara()
+    {
+        $aranan = request()->input('aranan');
+        $urunler = Urun::where('urun_adi','like',"%$aranan%")
+            ->orWhere('aciklama','like',"%$aranan%")
+            ->get();
+        request()->flash();
+        return view('arama',compact('urunler'));
+    }
 }
