@@ -141,6 +141,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'adsoyad' => 'Ad Soyad',
+        'email' => 'Email',
+        'sifre' => 'Şifre',
+    ],
 
 ];
