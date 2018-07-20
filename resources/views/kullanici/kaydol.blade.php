@@ -8,7 +8,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Kaydol</div>
                     <div class="panel-body">
+                        {{-- 1.YOL : form uzerinde olusan hataları goster--}}
                         @include('layouts.partials.errors')
+
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('kullanici.kaydol') }}">
                             {{ csrf_field() }}
 
@@ -17,6 +19,7 @@
                                 <div class="col-md-6">
                                     <input id="adsoyad" type="text" class="form-control" name="adsoyad" value="{{ old('adsoyad') }}" required autofocus>
 
+                                    {{-- 2.YOL : form üzerinde olusan hataları tek tek gosterme, yukarıda dive eklenen class ı unutma --}}
                                     @if($errors->has('adsoyad'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('adsoyad') }}</strong>
