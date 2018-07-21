@@ -36,7 +36,13 @@ Route::get('/ara','UrunController@ara')->name('urun_ara');
 
 // burada da görüldüğü gibi sadece tek bir route içinde middleware verilebilir.
 //Route::get('/sepet','SepetController@index')->name('sepet')->middleware('auth');
-Route::get('/sepet','SepetController@index')->name('sepet');
+
+// sepet ile ilgili tüm route burada grupluyoruz.
+Route::group(['prefix' => 'sepet'],function (){
+    Route::get('/','SepetController@index')->name('sepet');
+    Route::post('/ekle','SepetController@ekle')->name('sepet.ekle');
+});
+
 
 Route::group(['middleware' => 'auth'],function(){
     // ** App\Exceptions\Handler.php içerisinde unauthenticated fonksiyonunu kendimize gore override ediyoruz.
@@ -47,6 +53,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/siparisler/{id}','SiparisController@detay')->name('siparis');
 });
 
+// kullanıcı ile ilgili tüm route burada grupluyoruz.
 Route::group(['prefix' => 'kullanici'],function (){
     // her birinin onune kullanici yazmaktansa bu sekilde gruplamalar yapilabilir.
     //Route::get('/kullanici/oturumac','KullaniciController@giris_form')->name('kullanici.oturumac');

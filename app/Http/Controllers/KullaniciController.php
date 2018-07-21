@@ -19,6 +19,13 @@ class KullaniciController extends Controller
         $this->middleware('guest')->except('oturumukapat');
         //burada sonuna eklenen except içerisinde bu kurala oturumukapat metodunun dahil olmadığı belirtilmiştir.
         // çünkü oturumukapat kullanılması için giriş işleminin yapılması gerekmektedir.
+
+        // VEYA
+
+        // controller içerisinde bu şekilde middleware kullanılarak
+        // bu controller a ulaşması için GİRİŞ YAPMASI zorlanmaktadır.
+        //$this->middleware('auth');
+
     }
 
     public function giris_form()
