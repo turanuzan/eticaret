@@ -33,7 +33,7 @@ class SepetController extends Controller
 
             SepetUrun::updateOrCreate(
                 ['sepet_id' => $aktif_sepet_id, 'urun_id' => $urun->id], // where şartı gibi varsa gunceller yoksa yeni ekler.
-                ['adet' => $cartItem->qty, 'tutar' => $urun->fiyati, 'durum' => 'Beklemede']
+                ['adet' => $cartItem->qty, 'fiyati' => $urun->fiyati, 'durum' => 'Beklemede']
             );
         }
 

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Mail\KullaniciKayitMail;
+use App\Models\Sepet;
+use App\Models\SepetUrun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Models\Kullanici;
+use Cart;
 
 class KullaniciController extends Controller
 {
@@ -47,6 +50,26 @@ class KullaniciController extends Controller
         }
 
         request()->session()->regenerate();
+
+        // Belirtilen kullanıcıya ait sepet bilgisi varsa getirir yoksa oluşturur.
+        $aktif_sepet_id = Sepet::firstOrCreate(['kullanici_id' => auth()->id()])->id;
+        session()->put('aktif_sepet_id',$aktif_sepet_id);
+
+        if(Cart::count() > 0){
+            foreach (Cart::content() as $cartItem) {
+                SepetUrun::updateOrCreate(
+                    ['sepet_id' => $aktif_sepet_id, 'urun_id' => $cartItem->id],
+                    ['adet' => $cartItem->qty, 'fiyati' => $cartItem->price, 'durum' => 'Beklemede']
+                );
+            }
+        }
+
+        Cart::destroy();
+        $sepetUrunler = SepetUrun::where('sepet_id',$aktif_sepet_id)->get();
+        foreach ($sepetUrunler as $sepetUrun) {
+            Cart::add($sepetUrun->urun->id,$sepetUrun->urun->urun_adi,$sepetUrun->adet,$sepetUrun->fiyati,['slug' => $sepetUrun->urun->slug]);
+        }
+
         // ornek olarak -- odeme sayfasını açtık ama bizi giriş sayfasına yönlendirdi.
         // giriş işleminden sonra bizi ödeme sayfasına yönlendirir. Eğer ödeme sayfasını bulamaz ise anasayfaya yönlendirir.
         return redirect()->intended('');
