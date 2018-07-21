@@ -46,3 +46,9 @@ Route::group(['prefix' => 'kullanici'],function (){
     Route::get('/kaydol','KullaniciController@kaydol_form')->name('kullanici.kaydol'); // adres satirindan acilirken
     Route::post('/kaydol','KullaniciController@kaydol'); // form gonderilirken, get icin isimlendirme yapıldığı için burada gerek yok
 });
+
+// mail gondermeden gonderilecek mail şablonunu test edebiliriz.
+Route::get('/test/mail',function(){
+    $kullanici = \App\Models\Kullanici::find(1); // test amaçli direk ilk kullanıcıyı aldık.
+    return new App\Mail\KullaniciKayitMail($kullanici);
+});

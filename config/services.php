@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => App\Kullanici::class,
+        'model' => App\Models\Kullanici::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
