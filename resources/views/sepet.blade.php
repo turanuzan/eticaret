@@ -23,6 +23,13 @@
                         </td>
                         <td>
                             <a href="{{ route('urun',$urunCartItem->options->slug) }}">{{ $urunCartItem->name }}</a>
+                            {{--Cart kutuphanesi rowId seklinde tutuyor ve silmek icin bunu kullanıyoruz--}}
+                            <form action="{{ route('sepet.kaldir', $urunCartItem->rowId) }}" method="post">
+                                {{ csrf_field() }}
+                                {{--formun delete method u ile gonderileceğini belirtiyoruz--}}
+                                {{ method_field('DELETE') }}
+                                <input type="submit" class="btn btn-danger btn-xs" value="Sepetten Kaldir">
+                            </form>
                         </td>
                         <td>{{ $urunCartItem->price }} ₺</td>
                         <td>
@@ -49,7 +56,11 @@
                 </tr>
             </table>
             <div>
-                <a href="#" class="btn btn-info pull-left">Sepeti Boşalt</a>
+                <form action="{{ route('sepet.bosalt') }}" method="post">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <input type="submit" class="btn btn-info pull-left" value="Sepeti Boşalt">
+                </form>
                 <a href="#" class="btn btn-success pull-right btn-lg">Ödeme Yap</a>
             </div>
             @else

@@ -23,4 +23,20 @@ class SepetController extends Controller
             ->with('mesaj_tur','success')
             ->with('mesaj','Ürün sepete eklendi.');
     }
+
+    public function kaldir($rowid)
+    {
+        Cart::remove($rowid);
+        return redirect()->route('sepet')
+            ->with('mesaj_tur','success')
+            ->with('mesaj','Ürün sepetten kaldırıldı.');
+    }
+
+    public function bosalt()
+    {
+        Cart::destroy();
+        return redirect()->route('sepet')
+            ->with('mesaj_tur','success')
+            ->with('mesaj','Sepetiniz boşaltıldı.');
+    }
 }
