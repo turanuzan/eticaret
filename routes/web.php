@@ -43,9 +43,12 @@ Route::group(['prefix' => 'kullanici'],function (){
     // her birinin onune kullanici yazmaktansa bu sekilde gruplamalar yapilabilir.
     //Route::get('/kullanici/oturumac','KullaniciController@giris_form')->name('kullanici.oturumac');
     Route::get('/oturumac','KullaniciController@giris_form')->name('kullanici.oturumac');
+    Route::post('/oturumac','KullaniciController@giris');
     Route::get('/kaydol','KullaniciController@kaydol_form')->name('kullanici.kaydol'); // adres satirindan acilirken
     Route::post('/kaydol','KullaniciController@kaydol'); // form gonderilirken, get icin isimlendirme yapıldığı için burada gerek yok
     Route::get('aktiflestir/{anahtar}','KullaniciController@aktiflestir')->name('aktiflestir');
+    Route::post('/oturumukapat','KullaniciController@oturumukapat')->name('kullanici.oturumukapat');
+
 });
 
 // mail gondermeden gonderilecek mail şablonunu test edebiliriz.

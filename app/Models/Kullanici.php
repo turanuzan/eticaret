@@ -19,4 +19,15 @@ class Kullanici extends Authenticatable
     const CREATED_AT = 'olusturma_tarihi';
     const UPDATED_AT = 'guncelleme_tarihi';
     const DELETED_AT = 'silinme_tarihi';
+
+    // override ediliyor.
+    public function getAuthPassword()
+    {
+        /*
+         * Burada login islemi yaparken
+         * auth()->attempt(['email' => request('email'), 'password' => request('sifre')],request()->has('benihatirla'))
+         * password alanina bizim turkce olarak tanımladığımız şifre alanı eşit olacak die belirtiyoruz.
+         * */
+        return $this->sifre;
+    }
 }

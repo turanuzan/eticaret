@@ -16,6 +16,24 @@ class KullaniciController extends Controller
         return view('kullanici.oturumac');
     }
 
+    public function giris()
+    {
+        $this->validate(request(),[
+            'email' => 'required|email',
+            'sifre' => 'required'
+        ]);
+
+        // login islemi basarısız olursa
+        if(!auth()->attempt(['email' => request('email'), 'password' => request('sifre')],request()->has('benihatirla'))) {
+            $errors = ['email' => 'Hatalı giriş'];
+            return back()->withErrors($errors); // giris yaptığımız sayfaya tekrar yonlendirme yapar
+        }
+
+        request()->session()->regenerate();
+        return redirect()->intended('');
+
+    }
+
     public function kaydol_form()
     {
         return view('kullanici.kaydol');
@@ -60,5 +78,13 @@ class KullaniciController extends Controller
         return redirect()->to('/')
             ->with('mesaj','Kullanıcı kaydınız aktifleştirildi.')
             ->with('mesaj_tur','success');
+    }
+
+    public function oturumukapat()
+    {
+        auth()->logout();
+        request()->session()->flush();
+        request()->session()->regenerate();
+        return redirect()->route('anasayfa');
     }
 }
