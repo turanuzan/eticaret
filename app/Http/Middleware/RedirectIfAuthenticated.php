@@ -18,7 +18,12 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            // KullaniciController içerisinde guest middleware kullanıldı.
+            // guest middleware de Kernel.php içerisinde buraya baktığını görmekteyiz.
+            // giriş yapıldıktan sonra ulaşılmaması gereken bir sayfaya geldiğinde home sayfasına yönlendiriliyor.
+            // bizde home sayfası olmadığı için / olarak değiştiriyoruz.
+            return redirect('/');
+            //return redirect('/home');
         }
 
         return $next($request);

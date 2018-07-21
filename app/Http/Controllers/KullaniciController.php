@@ -11,6 +11,16 @@ use App\Models\Kullanici;
 
 class KullaniciController extends Controller
 {
+    public function __construct()
+    {
+        // Bu middleware kullanılabilmesi için RedirectIfAuthenticated.php içerisinde açıklamaları oku
+        // bu tanımlama ile bu controller içerisinde var olan metodlara
+        // kullanıcı girişi YAPMAMIŞ kişilerin erişmesine izin veriyoruz.
+        $this->middleware('guest')->except('oturumukapat');
+        //burada sonuna eklenen except içerisinde bu kurala oturumukapat metodunun dahil olmadığı belirtilmiştir.
+        // çünkü oturumukapat kullanılması için giriş işleminin yapılması gerekmektedir.
+    }
+
     public function giris_form()
     {
         return view('kullanici.oturumac');
@@ -30,6 +40,8 @@ class KullaniciController extends Controller
         }
 
         request()->session()->regenerate();
+        // ornek olarak -- odeme sayfasını açtık ama bizi giriş sayfasına yönlendirdi.
+        // giriş işleminden sonra bizi ödeme sayfasına yönlendirir. Eğer ödeme sayfasını bulamaz ise anasayfaya yönlendirir.
         return redirect()->intended('');
 
     }
