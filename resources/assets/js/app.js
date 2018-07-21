@@ -10,3 +10,10 @@ require('./bootstrap');
 setTimeout(function () {
     $('.alert').slideUp(500);
 },3000);
+
+/*tüm ajax isteklerinde form icine csrf token bilgisini gönderiyor.*/
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+    }
+});
