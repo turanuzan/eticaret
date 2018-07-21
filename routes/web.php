@@ -45,6 +45,7 @@ Route::group(['prefix' => 'kullanici'],function (){
     Route::get('/oturumac','KullaniciController@giris_form')->name('kullanici.oturumac');
     Route::get('/kaydol','KullaniciController@kaydol_form')->name('kullanici.kaydol'); // adres satirindan acilirken
     Route::post('/kaydol','KullaniciController@kaydol'); // form gonderilirken, get icin isimlendirme yapıldığı için burada gerek yok
+    Route::get('aktiflestir/{anahtar}','KullaniciController@aktiflestir')->name('aktiflestir');
 });
 
 // mail gondermeden gonderilecek mail şablonunu test edebiliriz.

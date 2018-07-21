@@ -43,4 +43,22 @@ class KullaniciController extends Controller
 
         return redirect()->route('anasayfa');
     }
+
+    public function aktiflestir($anahtar)
+    {
+        $kullanici = Kullanici::where('aktivasyon_anahtari',$anahtar)->first();
+
+        if(is_null($kullanici) || empty($kullanici)){
+            return redirect()->to('/')
+                ->with('mesaj','Kullanıcı kaydınız aktifleştirilemedi.')
+                ->with('mesaj_tur','warning');
+        }
+
+        $kullanici->aktivasyon_anahtari = null;
+        $kullanici->aktif_mi = 1;
+        $kullanici->save();
+        return redirect()->to('/')
+            ->with('mesaj','Kullanıcı kaydınız aktifleştirildi.')
+            ->with('mesaj_tur','success');
+    }
 }
