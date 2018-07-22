@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\KullaniciKayitMail;
+use App\Models\KullaniciDetay;
 use App\Models\Sepet;
 use App\Models\SepetUrun;
 use Illuminate\Http\Request;
@@ -96,6 +97,8 @@ class KullaniciController extends Controller
             'aktivasyon_anahtari' => Str::random(60),
             'aktif_mi' => 0,
         ]);
+
+        $kullanici->detay()->save(new KullaniciDetay()); // Kullanici detay tablosuna kullanıcı id ye bağlı boş bir satır ekler
 
         Mail::to($kullanici->email)->send(new KullaniciKayitMail($kullanici));
 
