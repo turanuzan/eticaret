@@ -5,26 +5,43 @@
     <div class="container">
         <div class="bg-content">
             <h2>Ödeme</h2>
+            <form action="{{ route('odemeyap') }}" method="post">
+                {{ csrf_field() }}
             <div class="row">
                 <div class="col-md-5">
                     <h3>Ödeme Bilgileri</h3>
                     <div class="form-group">
-                        <label for="kartno">Kredi Kartı Numarası</label>
-                        <input type="text" class="form-control kredikarti" id="kartno" name="cardnumber" style="font-size:20px;" required>
+                        <label for="kart_numarasi">Kredi Kartı Numarası</label>
+                        <input type="text" class="form-control kredikarti" id="kart_numarasi" name="kart_numarasi" style="font-size:20px;" required>
                     </div>
                     <div class="form-group">
-                        <label for="cardexpiredatemonth">Son Kullanma Tarihi</label>
+                        <label for="son_kullanma_tarihi_ay">Son Kullanma Tarihi</label>
                         <div class="row">
                             <div class="col-md-6">
                                 Ay
-                                <select name="cardexpiredatemonth" id="cardexpiredatemonth" class="form-control" required>
+                                <select name="son_kullanma_tarihi_ay" id="son_kullanma_tarihi_ay" class="form-control" required>
                                     <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                    <option>11</option>
+                                    <option>12</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 Yıl
-                                <select name="cardexpiredateyear" class="form-control" required>
-                                    <option>2017</option>
+                                <select id="son_kullanma_tarihi_yil" name="son_kullanma_tarihi_yil" class="form-control" required>
+                                    <option>2018</option>
+                                    <option>2019</option>
+                                    <option>2020</option>
+                                    <option>2021</option>
+                                    <option>2022</option>
                                 </select>
                             </div>
                         </div>
@@ -53,20 +70,40 @@
                 </div>
                 <div class="col-md-7">
                     <h4>Ödenecek Tutar</h4>
-                    <span class="price">18.92 <small>TL</small></span>
+                    <span class="price">{{ Cart::total() }} <small>TL</small></span>
 
-                    <h4>Kargo</h4>
-                    <span class="price">0 <small>TL</small></span>
-
-                    <h4>Teslimat Bilgileri</h4>
-                    <p>Teslimat Adresi </p>
-                    <a href="#">Değiştir</a>
-
-                    <h4>Kargo</h4>
-                    <p>Ücretsiz
+                    <h4>İletişim ve Fatura Bilgileri</h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="adsoyad">Ad Soyad</label>
+                                <input type="text" class="form-control" name="adsoyad" id="adsoyad" value="{{ auth()->user()->adsoyad }}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="adsoyad">Adres</label>
+                                <input type="text" class="form-control" name="adres" id="adres" value="{{ $kullanici_detay->adres }}" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="adsoyad">Telefon</label>
+                                <input type="text" class="form-control telefon" name="telefon" id="telefon" value="{{ $kullanici_detay->telefon }}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="adsoyad">Cep Telefonu</label>
+                                <input type="text" class="form-control telefon" name="ceptelefonu" id="ceptelefonu" value="{{ $kullanici_detay->ceptelefonu }}" required>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
+            </form>
         </div>
     </div>
 

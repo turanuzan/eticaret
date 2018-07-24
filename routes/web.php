@@ -46,12 +46,13 @@ Route::group(['prefix' => 'sepet'],function (){
     Route::patch('/guncelle/{rowid}','SepetController@guncelle')->name('sepet.guncelle');
 });
 
+Route::get('/odeme','OdemeController@index')->name('odeme');
+Route::post('/odemeyap','OdemeController@odemeyap')->name('odemeyap');
 
 Route::group(['middleware' => 'auth'],function(){
     // ** App\Exceptions\Handler.php içerisinde unauthenticated fonksiyonunu kendimize gore override ediyoruz.
     // sadece kullanıcı girişi yapmış kişilerin bu sayfaları gormesini sağlıyoruz.
     // login işlemi yapılmadıysa login sayfalarına yonlendirilmektedir.
-    Route::get('/odeme','OdemeController@index')->name('odeme');
     Route::get('/siparisler','SiparisController@index')->name('siparisler');
     Route::get('/siparisler/{id}','SiparisController@detay')->name('siparis');
 });
