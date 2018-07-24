@@ -26,6 +26,14 @@ Route::view('/sepet','sepet');
 
 */
 
+Route::group(['prefix' => 'yonetim', 'namespace' => 'Yonetim'], function(){
+    // bu grup icinde tanımlananar Yonetim klasoru altındaki controller ı arayacak.
+    Route::get('/',function (){
+        return "Admin";
+    });
+    Route::get('/oturumac','KullaniciController@oturumac')->name('yonetim.oturumac');
+});
+
 Route::get('/','AnasayfaController@index')->name('anasayfa');
 
 Route::get('/kategori/{slug_kategoriadi}','KategoriController@index')->name('kategori');
