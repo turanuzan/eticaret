@@ -53,7 +53,12 @@ class KullaniciController extends Controller
         request()->session()->regenerate();
 
         // Belirtilen kullanıcıya ait sepet bilgisi varsa getirir yoksa oluşturur.
-        $aktif_sepet_id = Sepet::firstOrCreate(['kullanici_id' => auth()->id()])->id;
+        //$aktif_sepet_id = Sepet::firstOrCreate(['kullanici_id' => auth()->id()])->id;
+        $aktif_sepet_id = Sepet::aktif_sepet_id(); // kendi yazdigimiz fonksiyona gore aliyoruz. Birden fazla sepet olacaktır.
+        if(is_null($aktif_sepet_id)){
+            $aktif_sepet = Sepet::create(['kullanici_id' => auth()->id()]);
+            $aktif_sepet_id = $aktif_sepet->id;
+        }
         session()->put('aktif_sepet_id',$aktif_sepet_id);
 
         if(Cart::count() > 0){

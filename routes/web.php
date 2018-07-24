@@ -47,7 +47,7 @@ Route::group(['prefix' => 'sepet'],function (){
 });
 
 Route::get('/odeme','OdemeController@index')->name('odeme');
-Route::post('/odemeyap','OdemeController@odemeyap')->name('odemeyap');
+Route::post('/odeme','OdemeController@odemeyap')->name('odemeyap');
 
 Route::group(['middleware' => 'auth'],function(){
     // ** App\Exceptions\Handler.php içerisinde unauthenticated fonksiyonunu kendimize gore override ediyoruz.
