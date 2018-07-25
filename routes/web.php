@@ -32,8 +32,10 @@ Route::group(['prefix' => 'yonetim', 'namespace' => 'Yonetim'], function(){
     Route::redirect('/','yonetim/oturumac'); // sadece yonetim yazdiginda oturumac sayfasına gider burda giriş işlemini kontrol eder.
     //get ve post icin ayrı ayrı iki satir açmaktansa aşağıda yapmıştık arama sayfası için
     // bunun yerine match ile hangi metodlarda kullanılacağını belirtiyoruz
-    // controller da da bir ayarı var orda kontrol edelim.
+    // controller da nasıl kontrol ettigimize bakalım.
     Route::match(['get','post'],'/oturumac','KullaniciController@oturumac')->name('yonetim.oturumac');
+    Route::get('/oturumukapat','KullaniciController@oturumukapat')->name('yonetim.oturumukapat');
+
     Route::get('/anasayfa','AnasayfaController@index')->name('yonetim.anasayfa');
 });
 

@@ -52,4 +52,13 @@ class KullaniciController extends Controller
         }
         return view('yonetim.oturumac');
     }
+
+    public function oturumukapat()
+    {
+        // auth()->logout(); demiyoruz. Çünkü giriş yaparken Auth::guard('yonetim') ile giriş yaptık artık bunu sıfırlamamız gerekiyor.
+        Auth::guard('yonetim')->logout(); // yonetim ile ilgili yapılan giriş işlemini sıfırla diyoruz.
+        request()->session()->flush();
+        request()->session()->regenerate();
+        return redirect()->route('yonetim.oturumac');
+    }
 }
