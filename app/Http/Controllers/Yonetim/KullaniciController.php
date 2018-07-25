@@ -74,7 +74,8 @@ class KullaniciController extends Controller
             $kullanicilar = Kullanici::where('adsoyad','like',"%$aranan%")
                 ->orWhere('email','like',"%$aranan%")
                 ->orderByDesc('olusturma_tarihi')
-                ->paginate(8);
+                ->paginate(8)
+                ->appends('aranan',$aranan); // aranan deger oldugunda ona gore sayfalandirma olsun die
         }else{
             $kullanicilar = Kullanici::orderByDesc('olusturma_tarihi')->paginate(8);
         }

@@ -67,6 +67,7 @@
             @endforeach
             </tbody>
         </table>
+        {{ $kullanicilar->links() }}
     </div>
 
 @endsection
