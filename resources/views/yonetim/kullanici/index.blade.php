@@ -5,11 +5,13 @@
     <h1 class="page-header">Kullanıcı Yönetimi</h1>
     <h1 class="sub-header">
         <div class="btn-group pull-right" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary">Print</button>
-            <button type="button" class="btn btn-primary">Export</button>
+            <a href="{{ route('yonetim.kullanici.yeni') }}" class="btn btn-primary">Kullanıcı Ekle</a>
         </div>
         Kullanıcı Listesi
     </h1>
+
+    @include('layouts.partials.alert')
+
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">
@@ -24,31 +26,31 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($list as $entry)
+            @foreach($kullanicilar as $kullanici)
                 <tr>
-                    <td>{{ $entry->id }}</td>
-                    <td>{{ $entry->adsoyad }}</td>
-                    <td>{{ $entry->email }}</td>
+                    <td>{{ $kullanici->id }}</td>
+                    <td>{{ $kullanici->adsoyad }}</td>
+                    <td>{{ $kullanici->email }}</td>
                     <td>
-                        @if($entry->aktif_mi)
+                        @if($kullanici->aktif_mi)
                             <span class="label label-success">Aktif</span>
                         @else
-                            <span class="label label-success">Pasif</span>
+                            <span class="label label-danger">Pasif</span>
                         @endif
                     </td>
                     <td>
-                        @if($entry->yonetici_mi)
+                        @if($kullanici->yonetici_mi)
                             <span class="label label-success">Yönetici</span>
                         @else
-                            <span class="label label-success">Müşteri</span>
+                            <span class="label label-primary">Müşteri</span>
                         @endif
                     </td>
-                    <td>{{ $entry->olusturma_tarihi }}</td>
+                    <td>{{ $kullanici->olusturma_tarihi }}</td>
                     <td style="width: 100px">
-                        <a href="{{ route('yonetim.kullanici.duzenle',$entry->id) }}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Düzenle">
+                        <a href="{{ route('yonetim.kullanici.duzenle',$kullanici->id) }}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Düzenle">
                             <span class="fa fa-pencil"></span>
                         </a>
-                        <a href="#" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Sil" onclick="return confirm('Emin misiniz?')">
+                        <a href="{{ route('yonetim.kullanici.sil',$kullanici->id) }}" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Sil" onclick="return confirm('Emin misiniz?')">
                             <span class="fa fa-trash"></span>
                         </a>
                     </td>

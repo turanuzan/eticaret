@@ -68,8 +68,8 @@ class KullaniciController extends Controller
 
     public function index()
     {
-        $list = Kullanici::orderByDesc('olusturma_tarihi')->paginate(8);
-        return view('yonetim.kullanici.index',compact('list'));
+        $kullanicilar = Kullanici::orderByDesc('olusturma_tarihi')->paginate(8);
+        return view('yonetim.kullanici.index',compact('kullanicilar'));
     }
 
     // hem ekleme hem guncelleme icin bu fonksiyon kullanılacak
@@ -97,8 +97,8 @@ class KullaniciController extends Controller
         }
 
         // alanin doldurulup doldurulmadıgı veya checkboxlarda secildi mi secilmedi mi
-        $data['aktif_mi'] = request()->has('aktif_mi') ? 1 : 0;
-        $data['yonetici_mi'] = request()->has('yonetici_mi') ? 1 : 0;
+        $data['aktif_mi'] = request()->has('aktif_mi') && request('aktif_mi') == 1 ? 1 : 0;
+        $data['yonetici_mi'] = request()->has('yonetici_mi') && request('yonetici_mi') == 1 ? 1 : 0;
 
         if($id > 0){
             // guncelle
@@ -124,6 +124,14 @@ class KullaniciController extends Controller
         return redirect()->route('yonetim.kullanici.duzenle',$kullanici->id)
             ->with('mesaj_tur','success')
             ->with('mesaj',($id > 0) ? 'Güncellendi' : 'Kaydedildi');
+    }
+
+    public function sil($id)
+    {
+        Kullanici::destroy($id);
+        return redirect()->route('yonetim.kullanici')
+            ->with('mesaj_tur','success')
+            ->with('mesaj','Kayıt silindi');
     }
 
 }

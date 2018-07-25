@@ -33,6 +33,7 @@ class Kullanici extends Authenticatable
 
     public function detay()
     {
-        return $this->hasOne('App\Models\KullaniciDetay');
+        // detay bos gelirse withDefault ile varsayılan modelle doldursun anlamında kullanılır.
+        return $this->hasOne('App\Models\KullaniciDetay')->withDefault();
     }
 }
