@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Yonetim;
 
 use App\Models\Kullanici;
+use App\Models\KullaniciDetay;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -103,10 +104,22 @@ class KullaniciController extends Controller
             // guncelle
             $kullanici = Kullanici::where('id',$id)->firstOrFail();
             $kullanici->update($data);
+
         }else{
             // kaydet
             $kullanici = Kullanici::create($data);
         }
+
+        // updateOrCreate => ilk parametresi olan kullanici_id li kayıtı buluyor guncelliyor
+        // bulamaz ise o kullanici_id ye ait yeni bir satır açıyor.
+        KullaniciDetay::updateOrCreate(
+            ['kullanici_id' => $kullanici->id],
+            [
+                'adres' => request('adres'),
+                'telefon' => request('telefon'),
+                'ceptelefonu' => request('ceptelefonu')
+            ]
+        );
 
         return redirect()->route('yonetim.kullanici.duzenle',$kullanici->id)
             ->with('mesaj_tur','success')

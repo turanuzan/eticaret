@@ -17,7 +17,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="adsoyad">Ad Soyad</label>
-                    <input type="text" class="form-control" id="adsoyad" name="adsoyad" placeholder="Ad Soyad" value="{{ @$kullanici->adsoyad }}">
+                    <input type="text" class="form-control" id="adsoyad" name="adsoyad" placeholder="Ad Soyad" value="{{ old('adsoyad',@$kullanici->adsoyad) }}">
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ @$kullanici->email }}">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ old('email',@$kullanici->email) }}">
                 </div>
             </div>
             <div class="col-md-6">
@@ -39,7 +39,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="adres">Adres</label>
-                    <input type="text" class="form-control" id="adres" name="adres" placeholder="Adres" value="{{ @$kullanici->detay->adres }}">
+                    <input type="text" class="form-control" id="adres" name="adres" placeholder="Adres" value="{{ old('adres',@$kullanici->detay->adres) }}">
                 </div>
             </div>
         </div>
@@ -47,24 +47,26 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="telefon">Telefon</label>
-                    <input type="text" class="form-control" id="telefon" name="telefon" placeholder="Telefon" value="{{ @$kullanici->detay->telefon }}">
+                    <input type="text" class="form-control" id="telefon" name="telefon" placeholder="Telefon" value="{{ old('telefon',@$kullanici->detay->telefon) }}">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="ceptelefonu">Cep Telefonu</label>
-                    <input type="text" class="form-control" id="ceptelefonu" name="ceptelefonu" placeholder="Cep Telefonu" value="{{ @$kullanici->detay->ceptelefonu }}">
+                    <input type="text" class="form-control" id="ceptelefonu" name="ceptelefonu" placeholder="Cep Telefonu" value="{{ old('ceptelefonu',@$kullanici->detay->ceptelefonu) }}">
                 </div>
             </div>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="aktif_mi" value="1" {{ @$kullanici->aktif_mi ? 'checked' : '' }}> Aktif Mi
+                <input type="hidden" name="aktif_mi" value="0">
+                <input type="checkbox" name="aktif_mi" value="1" {{ old('aktif_mi', @$kullanici->aktif_mi) ? 'checked' : '' }}> Aktif Mi
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="yonetici_mi" value="1" {{ @$kullanici->yonetici_mi ? 'checked' : '' }}> Yönetici Mi
+                <input type="hidden" name="yonetici_mi" value="0">
+                <input type="checkbox" name="yonetici_mi" value="1" {{ old('yonetici_mi', @$kullanici->yonetici_mi) ? 'checked' : '' }}> Yönetici Mi
             </label>
         </div>
     </form>
