@@ -45,7 +45,12 @@ class KullaniciController extends Controller
         ]);
 
         // login islemi basarısız olursa
-        if(!auth()->attempt(['email' => request('email'), 'password' => request('sifre')],request()->has('benihatirla'))) {
+        $credentials = [
+            'email' => request('email'),
+            'password' => request('sifre'),
+            'aktif_mi' => 1
+        ];
+        if(!auth()->attempt($credentials,request()->has('benihatirla'))) {
             $errors = ['email' => 'Hatalı giriş'];
             return back()->withErrors($errors); // giris yaptığımız sayfaya tekrar yonlendirme yapar
         }

@@ -44,7 +44,18 @@ Route::group(['prefix' => 'yonetim', 'namespace' => 'Yonetim'], function(){
     // php artisan make:middleware Yonetim
     Route::group(['middleware' => 'yonetim'],function(){
         Route::get('/anasayfa','AnasayfaController@index')->name('yonetim.anasayfa');
+
+        // /yonetim/kullanici
+        Route::group(['prefix' => 'kullanici'],function(){
+            Route::match(['get','post'],'/','KullaniciController@index')->name('yonetim.kullanici');
+            Route::get('/yeni','KullaniciController@form')->name('yonetim.kullanici.yeni');
+            Route::get('/duzenle/{id}','KullaniciController@form')->name('yonetim.kullanici.duzenle');
+            Route::post('/kaydet/{id?}','KullaniciController@kaydet')->name('yonetim.kullanici.kaydet');
+            Route::get('/sil/{id}','KullaniciController@sil')->name('yonetim.kullanici.sil');
+        });
+
     });
+
 });
 
 Route::get('/','AnasayfaController@index')->name('anasayfa');

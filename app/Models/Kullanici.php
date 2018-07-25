@@ -11,7 +11,7 @@ class Kullanici extends Authenticatable
 
     protected $table = 'kullanici';
 
-    protected $fillable = ['adsoyad', 'email', 'sifre', 'aktivasyon_anahtari', 'aktif_mi'];
+    protected $fillable = ['adsoyad', 'email', 'sifre', 'aktivasyon_anahtari', 'aktif_mi', 'yonetici_mi'];
 
     // hidden ozelligi ile sorgularda bu alanlar cekilmez.
     protected $hidden = ['sifre', 'aktivasyon_anahtari'];
