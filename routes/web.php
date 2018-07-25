@@ -32,6 +32,7 @@ Route::group(['prefix' => 'yonetim', 'namespace' => 'Yonetim'], function(){
         return "Admin";
     });
     Route::get('/oturumac','KullaniciController@oturumac')->name('yonetim.oturumac');
+    Route::get('/anasayfa','AnasayfaController@index')->name('yonetim.anasayfa');
 });
 
 Route::get('/','AnasayfaController@index')->name('anasayfa');
