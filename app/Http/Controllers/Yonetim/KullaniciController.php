@@ -68,7 +68,17 @@ class KullaniciController extends Controller
 
     public function index()
     {
-        $kullanicilar = Kullanici::orderByDesc('olusturma_tarihi')->paginate(8);
+        if(request()->filled('aranan')){ // aranan degeri doldurulmus ise
+            request()->flash(); // formdan gonderilen bilgilerin saklanmasını belirtiyoruz.
+            $aranan = request('aranan');
+            $kullanicilar = Kullanici::where('adsoyad','like',"%$aranan%")
+                ->orWhere('email','like',"%$aranan%")
+                ->orderByDesc('olusturma_tarihi')
+                ->paginate(8);
+        }else{
+            $kullanicilar = Kullanici::orderByDesc('olusturma_tarihi')->paginate(8);
+        }
+
         return view('yonetim.kullanici.index',compact('kullanicilar'));
     }
 

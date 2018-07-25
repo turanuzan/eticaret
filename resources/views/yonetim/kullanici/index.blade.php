@@ -3,12 +3,21 @@
 @section('content')
 
     <h1 class="page-header">Kullanıcı Yönetimi</h1>
-    <h1 class="sub-header">
-        <div class="btn-group pull-right" role="group" aria-label="Basic example">
+    <h3 class="sub-header">Kullanıcı Listesi</h3>
+    <div class="well">
+        <div class="btn-group pull-right">
             <a href="{{ route('yonetim.kullanici.yeni') }}" class="btn btn-primary">Kullanıcı Ekle</a>
         </div>
-        Kullanıcı Listesi
-    </h1>
+        <form method="post" action="{{ route('yonetim.kullanici') }}" class="form-inline">
+            {{ csrf_field() }}
+            <div class="form-group">
+                <label for="aranan">Ara</label>
+                <input type="text" class="form-control form-control-sm" name="aranan" id="aranan" placeholder="Ad, Email Ara..." value="{{ old('aranan') }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Ara</button>
+            <a href="{{ route('yonetim.kullanici') }}" class="btn btn-primary">Temizle</a>
+        </form>
+    </div>
 
     @include('layouts.partials.alert')
 

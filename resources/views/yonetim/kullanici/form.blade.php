@@ -8,7 +8,7 @@
         <div class="pull-right">
             <button type="submit" class="btn btn-primary">{{ @$kullanici->id > 0 ? "Güncelle" : "Kaydet" }}</button>
         </div>
-        <h2 class="sub-header">Kullanıcı {{ @$kullanici->id > 0 ? "Düzenle" : "Ekle" }}</h2>
+        <h3 class="sub-header">Kullanıcı {{ @$kullanici->id > 0 ? "Düzenle" : "Ekle" }}</h3>
 
         @include('layouts.partials.errors')
         @include('layouts.partials.alert')
