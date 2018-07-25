@@ -36,7 +36,15 @@ Route::group(['prefix' => 'yonetim', 'namespace' => 'Yonetim'], function(){
     Route::match(['get','post'],'/oturumac','KullaniciController@oturumac')->name('yonetim.oturumac');
     Route::get('/oturumukapat','KullaniciController@oturumukapat')->name('yonetim.oturumukapat');
 
-    Route::get('/anasayfa','AnasayfaController@index')->name('yonetim.anasayfa');
+    // Middleware içerisinde Yonetim.php olarak oluşturuyoruz. Giriş işlemini kendi oluşturduğumuz middleware
+    // içerisindeki kontrollere göre sağlayacak ve sadece yönetici olarak giriş yapanlar bu sayfaları görecek
+    // Yonetim.php icerisinde gerekli ayarı yapıyoruz.
+    // Laravelde kullanılacak middleware tanımları Kernel.php içerisinde yer alıyor. Yonetim middleware buraya ekliyoruz.
+    // Kernel.php içerisinde line:62 de gerekli tanımlamayı gorebiliriz.
+    // php artisan make:middleware Yonetim
+    Route::group(['middleware' => 'yonetim'],function(){
+        Route::get('/anasayfa','AnasayfaController@index')->name('yonetim.anasayfa');
+    });
 });
 
 Route::get('/','AnasayfaController@index')->name('anasayfa');
