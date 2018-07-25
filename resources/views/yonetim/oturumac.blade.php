@@ -9,8 +9,12 @@
 </head>
 <body>
 <div class="container">
-    <form class="form-signin">
+    <form class="form-signin" action="{{ route('yonetim.oturumac') }}" method="post">
+        {{ csrf_field() }}
         <img src="/img/logo.png" class="logo">
+
+        @include('layouts.partials.errors')
+
         <label for="email" class="sr-only">Email</label>
         <input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
         <label for="sifre" class="sr-only">Şifre</label>

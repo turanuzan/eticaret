@@ -41,6 +41,11 @@ return [
             'provider' => 'users',
         ],
 
+        'yonetim' => [
+            'driver' => 'session',
+            'provider' => 'users', // asagida, providers kısmında giris icin hangi modeli kullanacagini belirtiyoruz.
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',

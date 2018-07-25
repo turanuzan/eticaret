@@ -28,10 +28,12 @@ Route::view('/sepet','sepet');
 
 Route::group(['prefix' => 'yonetim', 'namespace' => 'Yonetim'], function(){
     // bu grup icinde tanımlananar Yonetim klasoru altındaki controller ı arayacak.
-    Route::get('/',function (){
-        return "Admin";
-    });
-    Route::get('/oturumac','KullaniciController@oturumac')->name('yonetim.oturumac');
+
+    Route::redirect('/','yonetim/oturumac'); // sadece yonetim yazdiginda oturumac sayfasına gider burda giriş işlemini kontrol eder.
+    //get ve post icin ayrı ayrı iki satir açmaktansa aşağıda yapmıştık arama sayfası için
+    // bunun yerine match ile hangi metodlarda kullanılacağını belirtiyoruz
+    // controller da da bir ayarı var orda kontrol edelim.
+    Route::match(['get','post'],'/oturumac','KullaniciController@oturumac')->name('yonetim.oturumac');
     Route::get('/anasayfa','AnasayfaController@index')->name('yonetim.anasayfa');
 });
 
