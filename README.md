@@ -1,5 +1,7 @@
 # Laravel ile Eticaret
 
+# proje içerisinde .env ve node_modules bulunmuyor. node_modules aşağıdaki gibi kurulur.
+
 # npm -v
 # rm -rf node_modules (eskisini silmek için)
 # npm cache clear --force (eskisini silmek için)
