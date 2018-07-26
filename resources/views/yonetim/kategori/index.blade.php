@@ -26,6 +26,7 @@
             <thead class="thead-dark">
             <tr>
                 <th>#</th>
+                <th>Üst Kategori</th>
                 <th>Slug</th>
                 <th>Kategori Adı</th>
                 <th>Kayıt Tarihi</th>
@@ -36,6 +37,7 @@
             @foreach($kategoriler as $kategori)
                 <tr>
                     <td>{{ $kategori->id }}</td>
+                    <td>{{ $kategori->ust_kategori->kategori_adi }}</td>
                     <td>{{ $kategori->slug }}</td>
                     <td>{{ $kategori->kategori_adi }}</td>
                     <td>{{ $kategori->olusturma_tarihi }}</td>

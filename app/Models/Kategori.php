@@ -36,4 +36,12 @@ class Kategori extends Model
         return $this->belongsToMany('App\Models\Urun','kategori_urun');
     }
 
+    public function ust_kategori()
+    {
+        // eğer ust_id yoksa yani boş ise withDefault ile varsayılan olarak tanımlanan kategori_adi değer gelir.
+        return $this->belongsTo('App\Models\Kategori','ust_id')->withDefault([
+            'kategori_adi' => 'Ana Kategori'
+        ]);
+    }
+
 }

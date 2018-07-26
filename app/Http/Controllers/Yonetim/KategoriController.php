@@ -13,12 +13,15 @@ class KategoriController extends Controller
         if(request()->filled('aranan')){
             request()->flash();
             $aranan = request('aranan');
-            $kategoriler = Kategori::where('kategori_adi','like',"%$aranan%")
-                ->orderByDesc('olusturma_tarihi')
+            //with('ust_kategori') denildiğinde Kategori modelinde ust_kategori() fonksiyonu ile beraber çeker.
+            // index.blade.php de $kategori->ust_kategori->kategori_adi yapmıştık. Burada her kategori için ayrı ayrı sorgu atacaktır. (Buraya with eklemeden once)
+            // with('ust_kategori') ile çektiğimizde bütün kategoriler için sadece bir kere çalışacaktır.  ve html de $kategori->ust_kategori->kategori_adi yapmamız sıkıntı olmayacak.
+            $kategoriler = Kategori::with('ust_kategori')->where('kategori_adi','like',"%$aranan%")
+                ->orderByDesc('id')
                 ->paginate(8)
                 ->appends('aranan',$aranan);
         }else{
-            $kategoriler = Kategori::orderByDesc('olusturma_tarihi')->paginate(8);
+            $kategoriler = Kategori::with('ust_kategori')->orderByDesc('id')->paginate(8);
         }
 
         return view('yonetim.kategori.index',compact('kategoriler'));
@@ -68,8 +71,17 @@ class KategoriController extends Controller
 
     public function sil($id)
     {
-        Kullanici::destroy($id);
-        return redirect()->route('yonetim.kullanici')
+        // attach/detach
+        // attach : many to many tablolarına veri eklemeyi sağlar
+        // detach : many to many tablolarından ilişkili olan veriyi siler.
+        // yani kategori tablosundan kategori silindiğinde kategori_urun tablosundan da siler.
+
+        $kategori = Kategori::find($id);
+        $kategori->urunler()->detach();
+        //Kategori::destroy($id); bunun yerine aşağıdaki komut kullanılabilir.
+        $kategori->delete();
+
+        return redirect()->route('yonetim.kategori')
             ->with('mesaj_tur','success')
             ->with('mesaj','Kayıt silindi');
     }
