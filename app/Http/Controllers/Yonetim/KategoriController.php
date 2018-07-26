@@ -10,21 +10,28 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        if(request()->filled('aranan')){
-            request()->flash();
+        if(request()->filled('aranan') || request()->filled('ust_id')){
+            request()->flash(); // istekte gelen input degerlerini session alir
             $aranan = request('aranan');
+            $ust_id = request('ust_id');
             //with('ust_kategori') denildiğinde Kategori modelinde ust_kategori() fonksiyonu ile beraber çeker.
             // index.blade.php de $kategori->ust_kategori->kategori_adi yapmıştık. Burada her kategori için ayrı ayrı sorgu atacaktır. (Buraya with eklemeden once)
             // with('ust_kategori') ile çektiğimizde bütün kategoriler için sadece bir kere çalışacaktır.  ve html de $kategori->ust_kategori->kategori_adi yapmamız sıkıntı olmayacak.
-            $kategoriler = Kategori::with('ust_kategori')->where('kategori_adi','like',"%$aranan%")
+            $kategoriler = Kategori::with('ust_kategori')
+                ->where('kategori_adi','like',"%$aranan%")
+                ->where('ust_id',$ust_id)
                 ->orderByDesc('id')
                 ->paginate(8)
-                ->appends('aranan',$aranan);
+                ->appends(['aranan' => $aranan, 'ust_id' => $ust_id]); // sayfalandirmalarda ana kategoriyi de ekledik
         }else{
+            request()->flush(); // istekte gelen input degerleri session dan silinir.
             $kategoriler = Kategori::with('ust_kategori')->orderByDesc('id')->paginate(8);
         }
 
-        return view('yonetim.kategori.index',compact('kategoriler'));
+        // whereRaw ile bu tarzda kücük sql şartları yazabiliriz.
+        $anakategoriler = Kategori::whereRaw('ust_id is null')->get();
+
+        return view('yonetim.kategori.index',compact('kategoriler','anakategoriler'));
     }
 
     public function form($id = 0)

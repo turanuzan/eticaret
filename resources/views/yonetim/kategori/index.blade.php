@@ -13,6 +13,13 @@
             <div class="form-group">
                 <label for="aranan">Ara</label>
                 <input type="text" class="form-control form-control-sm" name="aranan" id="aranan" placeholder="Kategori Ara..." value="{{ old('aranan') }}">
+                <label for="ust_id">Üst Kategori</label>
+                <select name="ust_id" id="ust_id" class="form-control">
+                    <option value="">Seçiniz</option>
+                    @foreach($anakategoriler as $anakat)
+                        <option value="{{ $anakat->id }}" {{ old('ust_id') == $anakat->id ? 'selected' : '' }}>{{ $anakat->kategori_adi }}</option>
+                    @endforeach
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Ara</button>
             <a href="{{ route('yonetim.kategori') }}" class="btn btn-primary">Temizle</a>
@@ -34,6 +41,9 @@
             </tr>
             </thead>
             <tbody>
+            @if(count($kategoriler) == 0)
+                <tr><td colspan="6" class="text-center">Kayıt bulunamadı!</td></tr>
+            @endif
             @foreach($kategoriler as $kategori)
                 <tr>
                     <td>{{ $kategori->id }}</td>
