@@ -58,7 +58,7 @@ class KategoriController extends Controller
         // db den gelen slug ile kullanıcının slug ı farklı ise db den kontrolleri yapalım.
         $this->validate(request(),[
             'kategori_adi' => 'required',
-            'slug' => (request('orjinal_slug') != request('slug')) ? 'unique:kategori,slug' : '' // kategori tablosundaki slug değerlerini kontrol eder ve aynı slug kayıt ettirmez
+            'slug' => (request('orginal_slug') != request('slug')) ? 'unique:kategori,slug' : '' // kategori tablosundaki slug değerlerini kontrol eder ve aynı slug kayıt ettirmez
         ]);
 
         if($id > 0){
