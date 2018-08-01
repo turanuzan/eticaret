@@ -66,5 +66,32 @@
                 <input type="checkbox" name="goster_indirimli" value="1" {{ old('goster_indirimli', @$urun->detay->goster_indirimli) ? 'checked' : '' }}> İndirimli Ürünlerde Göster
             </label>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="kategoriler">Kategoriler</label>
+                    <select name="kategoriler[]" id="kategoriler" class="form-control" multiple>
+                        @foreach($kategoriler as $kategori)
+                            <option value="{{ $kategori->id }}" {{ collect(old('kategoriler',$urun_kategoriler))->contains($kategori->id) ? 'selected' : '' }}>{{ $kategori->kategori_adi }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
     </form>
+@endsection
+
+@section('head')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+@endsection
+
+@section('footer')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script>
+        $(function(){
+           $('#kategoriler').select2({
+               placeholder: 'Kategori Seçiniz'
+           });
+        });
+    </script>
 @endsection
