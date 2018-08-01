@@ -28,7 +28,7 @@
                         {{--http://lorempixel.com/640/400/food/1--}}
                         @foreach($urunler_slider as $index => $urun)
                             <div class="item {{ $index == 0 ? 'active' : '' }}">
-                                <img src="http://placekitten.com/640/400?image={{ $urun->id }}" alt="...">
+                                <img src="{{ $urun->detay->urun_resmi != null ? asset('uploads/urunler/'.$urun->detay->urun_resmi) : 'http://via.placeholder.com/400x485?text=UrunResmi' }}" class="img-responsive" style="min-width: 100%">
                                 <div class="carousel-caption">
                                     {{ $urun->urun_adi }}
                                 </div>
