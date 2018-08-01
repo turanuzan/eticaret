@@ -3,7 +3,7 @@
 @section('content')
     <h1 class="page-header">Ürün Yönetimi</h1>
 
-    <form action="{{ route('yonetim.urun.kaydet',@$urun->id) }}" method="post">
+    <form action="{{ route('yonetim.urun.kaydet',@$urun->id) }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="pull-right">
             <button type="submit" class="btn btn-primary">{{ @$urun->id > 0 ? "Güncelle" : "Kaydet" }}</button>
@@ -77,6 +77,10 @@
                     </select>
                 </div>
             </div>
+        </div>
+        <div class="form-group">
+            <label for="urun_resmi">Ürün Resmi</label>
+            <input type="file" name="urun_resmi" id="urun_resmi">
         </div>
     </form>
 @endsection

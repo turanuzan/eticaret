@@ -84,6 +84,25 @@ class UrunController extends Controller
             $urun->kategoriler()->attach($kategoriler); // attach : many to many tablolarına veri eklemeyi sağlar
         }
 
+        if(request()->hasFile('urun_resmi')){ // resim var mı yok mu ?
+
+            $this->validate(request(),[
+                'urun_resmi' => 'image|mimes:jpg,png,jpeg,gif|max:2048'
+            ]);
+
+            $urun_resmi = request()->file('urun_resmi');
+            //$urun_resmi = request()->urun_resmi; // request ten değeri almanın ikinci yontem
+
+            $dosya_adi = $urun->id . '-' . time() . '.' . $urun_resmi->extension();
+            //$dosya_adi = $urun_resmi->getClientOriginalName(); // orjinal ismi ile dosya adi olusturur.
+            //$dosya_adi = $urun_resmi->hashName(); // rastgale bir isim vererek isim olusturur.
+
+            if($urun_resmi->isValid()){ // dosyanın gecici olarak cache tarafında yazıldıysa
+                $urun_resmi->move('uploads/urunler',$dosya_adi);
+            }
+
+        }
+
         return redirect()->route('yonetim.urun.duzenle',$urun->id)
             ->with('mesaj_tur','success')
             ->with('mesaj',($id > 0) ? 'Güncellendi' : 'Kaydedildi');
