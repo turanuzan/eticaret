@@ -79,6 +79,9 @@
             </div>
         </div>
         <div class="form-group">
+            @if($urun->detay->urun_resmi != null)
+                <img src="/uploads/urunler/{{ $urun->detay->urun_resmi }}" style="height: 100px; margin-right: 20px;" class="thumbnail pull-left">
+            @endif
             <label for="urun_resmi">Ürün Resmi</label>
             <input type="file" name="urun_resmi" id="urun_resmi">
         </div>
