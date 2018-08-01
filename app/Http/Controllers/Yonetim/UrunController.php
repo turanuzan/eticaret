@@ -93,12 +93,16 @@ class UrunController extends Controller
             $urun_resmi = request()->file('urun_resmi');
             //$urun_resmi = request()->urun_resmi; // request ten değeri almanın ikinci yontem
 
-            $dosya_adi = $urun->id . '-' . time() . '.' . $urun_resmi->extension();
+            $dosya_adi = $urun->id . '_' . time() . '.' . $urun_resmi->extension();
             //$dosya_adi = $urun_resmi->getClientOriginalName(); // orjinal ismi ile dosya adi olusturur.
             //$dosya_adi = $urun_resmi->hashName(); // rastgale bir isim vererek isim olusturur.
 
             if($urun_resmi->isValid()){ // dosyanın gecici olarak cache tarafında yazıldıysa
                 $urun_resmi->move('uploads/urunler',$dosya_adi);
+                UrunDetay::updateOrCreate(
+                    ['urun_id' => $urun->id],
+                    ['urun_resmi' => $dosya_adi]
+                );
             }
 
         }
