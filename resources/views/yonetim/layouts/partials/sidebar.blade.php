@@ -30,7 +30,7 @@
         <span class="badge badge-dark badge-pill pull-right">{{ $istatistikler['bekleyen_siparis'] }}</span>
     </a>
     <a href="#" class="list-group-item collapsed" data-target="#submenu2" data-toggle="collapse" data-parent="#sidebar">
-        <span class="fa fa-fw fa-chart">
+        <span class="fa fa-fw fa-pie-chart">
             </span> Raporlar<span class="caret arrow">
         </span>
     </a>
