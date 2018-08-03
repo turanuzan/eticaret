@@ -11,8 +11,7 @@ class AnasayfaController extends Controller
 {
     public function index()
     {
-        $istatistikler = Cache::get('istatistikler');
-
+        //$istatistikler = Cache::get('istatistikler');
         //if(!Cache::has('istatistikler')){} // bu şekilde de bir kontrol yapabilirdik ama o zaman else kısmında Cache::get('istatistikler'); demek durumunda kalırız.
         /*if(empty($istatistikler)){
 
@@ -29,16 +28,21 @@ class AnasayfaController extends Controller
         //Cache::forget('istatistikler'); // o keye ait cache siler
         //Cache::flush(); // tüm cache temizler
 
-        // yukarıdaki bütün kontrollerin yanında daha kullanışlı yol ise
+        // ******* yukarıdaki bütün kontrollerin yanında daha kullanışlı yol ise *******
 
-        $bitisZamani = now()->addMinutes(10);
+        /*$bitisZamani = now()->addMinutes(10);
 
         $istatistikler = Cache::remember('istatistikler',$bitisZamani,function (){ // varsa getirir yoksa yenisini alır.
             return [
                 'bekleyen_siparis' => Siparis::where('durum','Siparişiniz alındı')->count()
             ];
-        });
+        });*/
 
-        return view('yonetim.anasayfa',compact('istatistikler'));
+        // *********************** TÜM VİEW DOSYALARINDA BU DEĞİŞKENE ULAŞMAK İSTİYORSAK
+        // *********************** PROVIDER altında APPSERVICEPROVIDER dosyasında işlem yapıyoruz.
+
+        //return view('yonetim.anasayfa',compact('istatistikler'));
+
+        return view('yonetim.anasayfa');
     }
 }
