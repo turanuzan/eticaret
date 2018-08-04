@@ -24,7 +24,10 @@ class AnasayfaController extends Controller
             ->join('urun_detay','urun_detay.urun_id','urun.id')
             ->where('urun_detay.goster_slider',1)
             ->orderBy('guncelleme_tarihi','desc')
-            ->take(get_ayar('anasayfa_slider_urun_adet'))->get();
+            ->take(config('ayar.anasayfa_slider_urun_adet'))->get();
+
+        // yukarıda önce Helper Method yöntemi ile get_ayar('anasayfa_slider_urun_adet') eklenmişti.
+        // şimdi ise config özelligi ayarları setleyelim. -> config('ayar.anasayfa_slider_urun_adet')
 
         // iliskili tablolarda join kullanımı
         $urun_gunun_firsati = Urun::select('urun.*')

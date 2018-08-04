@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Ayar;
 use App\Models\Kategori;
 use App\Models\Kullanici;
 use App\Models\Siparis;
 use App\Models\Urun;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -53,6 +55,18 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with('istatistikler',$istatistikler);
         });
+
+        /*********** !!!!!!!!!!!!!!! ÖNEMLİ !!!!!!!!!!!!!!!!!!!! *************/
+        //AppServiceProvider.php proje ilk çalıştığında burdaki ayarlar okunur.
+        // Ayarlar tablosundaki değerler okunarak Config içerisine setlenir.
+        // Kullanımını AnasayfaController.php içerisinde görebiliriz.
+        // Helper Method ile db den çekip cache yazmaktansa bu özellik daha güzel gibi görünüyor.
+
+        if(Schema::hasTable('ayar')){ // ayar tablosu mevcut ise
+            foreach (Ayar::all() as $ayar) {
+                Config::set('ayar.' . $ayar->anahtar, $ayar->deger);
+            }
+        }
 
     }
 
